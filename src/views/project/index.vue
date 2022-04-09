@@ -61,11 +61,16 @@ export default {
   name: "INDEX",
   methods: {
     viewProject(row){
-      this.$router.push('/project/list/'+row.name)
+      this.$router.push({
+        path: '/project/'+row.name+'/list',
+        query: {
+          id: row.id
+        }
+      })
     },
     editProject(row){
       this.$router.push({
-        path :'/project/edit/'+row.name,
+        path :'/project/'+row.name+'/edit',
         query:{
           id: row.id
         }
@@ -84,6 +89,7 @@ export default {
       // 验证是否返回CodeError
       if(res.data['code']==null) {
         this.tableData = res.data['result']
+        console.log(this.tableData)
       }else{
         this.$message.error(res.data['msg'])
       }

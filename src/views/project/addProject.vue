@@ -15,6 +15,13 @@
       <el-form-item label="地址" v-show="formAddProject.isExternal" class="input">
         <el-input v-model="formAddProject.url" placeholder="url"></el-input>
       </el-form-item>
+      <p>账户验证</p>
+      <el-form-item label="账户" class="input">
+        <el-input v-model="formAddProject.authAccount" placeholder="account"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" class="input">
+        <el-input v-model="formAddProject.authPassword" placeholder="passwrod" show-password></el-input>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="addProject">添加</el-button>
       </el-form-item>
@@ -34,6 +41,8 @@ export default {
         desc: '',
         isExternal: false,
         url: '',
+        authAccount: '',
+        authPassword: '',
       },
     }
   },
@@ -42,7 +51,7 @@ export default {
       if (!this.formAddProject.isExternal){
         this.formAddProject.url = ''
       }
-      let param = {name: this.formAddProject.name, desc: this.formAddProject.desc,url: this.formAddProject.url}
+      let param = {name: this.formAddProject.name, desc: this.formAddProject.desc,url: this.formAddProject.url,username: this.formAddProject.authAccount, password: this.formAddProject.authPassword}
       addProject(param).then(res => {
         // 验证是否返回CodeError
         if(res.data['code']==null) {

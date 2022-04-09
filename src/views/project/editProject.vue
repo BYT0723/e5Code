@@ -1,39 +1,30 @@
 <template>
   <div class="editProject">
-    <h2 class="title">项目信息</h2>
-    <hr style="margin-bottom: 20px">
-    <el-form :label-position="labelPosition" label-width="80px" ref="editProjectForm" :model="formEditProject" size="medium">
-      <el-form-item label="名称" class="input">
-        <el-input v-model="formEditProject.name" placeholder="名称"></el-input>
-      </el-form-item>
-      <el-form-item label="描述"  class="input">
-        <el-input type="textarea" :rows="3" v-model="formEditProject.desc" placeholder="描述一下"></el-input>
-      </el-form-item>
-      <el-form-item label="地址" class="input">
-        <el-input v-model="formEditProject.url" placeholder="url" disabled></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="saveProject">保存</el-button>
-        <el-button type="danger" @click="removeProject">删除项目</el-button>
-      </el-form-item>
-    </el-form>
+    <div class="projectMessage">
+      <h2 class="title">项目信息</h2>
+      <hr style="margin-bottom: 20px">
+      <el-form :label-position="labelPosition" label-width="80px" ref="editProjectForm" :model="formEditProject" size="medium">
+        <el-form-item label="名称" class="input">
+          <el-input v-model="formEditProject.name" placeholder="名称"></el-input>
+        </el-form-item>
+        <el-form-item label="描述"  class="input">
+          <el-input type="textarea" :rows="5" v-model="formEditProject.desc" placeholder="描述一下" resize="none"></el-input>
+        </el-form-item>
+        <el-form-item label="地址" class="input">
+          <el-input v-model="formEditProject.url" placeholder="url" disabled></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="saveProject">保存</el-button>
+          <el-button type="danger" @click="removeProject">删除项目</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div class="projectPermission">
+      <h2>权限管理</h2>
+      <hr style="margin-bottom: 20px">
+    </div>
   </div>
 </template>
-
-
-<style>
-.editProject{
-  min-height: 80vh;
-  overflow: hidden;
-  margin: 20px 50px;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 20px;
-}
-.input {
-  width: 80vh;
-}
-</style>
 
 <script>
 import { getProject,updateProject,deleteProject } from '../../util/api.js'
@@ -98,3 +89,27 @@ export default {
   }
 }
 </script>
+
+<style>
+.editProject{
+  height: 80vh;
+  overflow: hidden;
+  margin: 20px 50px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.projectMessage{
+  width: 50%;
+}
+.projectPermission{
+  width: 50%;
+  border-left: 1px solid #aaa;
+  padding-left: 20px;
+}
+.input {
+  width: 80%;
+}
+</style>

@@ -76,3 +76,79 @@ export const deleteProject = (param) => {
     data: param
   })
 }
+
+export const listProjectAllFiles = (param) => {
+  return project.request({
+    url: '/project/listProjectAllFiles',
+    method: 'post',
+    data: param
+  })
+}
+
+export const listProjectFiles = (param) => {
+  return project.request({
+    url: '/project/listProjectFiles',
+    method: 'post',
+    data: param
+  })
+}
+
+export const createFile = (param) => {
+  return project.request({
+    url: '/project/createFile',
+    method: 'post',
+    data: param
+  })
+}
+export const readFile = (param) => {
+  return project.request({
+    url: '/project/readFile',
+    method: 'post',
+    data: param
+  })
+}
+export const updateFile = (param) => {
+  return project.request({
+    url: '/project/updateFile',
+    method: 'post',
+    data: param
+  })
+}
+export const deleteFile = (param) => {
+  return project.request({
+    url: '/project/deleteFile',
+    method: 'post',
+    data: param
+  })
+}
+export const moveFile = (param) => {
+  return project.request({
+    url: '/project/moveFile',
+    method: 'post',
+    data: param
+  })
+}
+
+export const mkDir = (param) => {
+  return project.request({
+    url: '/project/mkDir',
+    method: 'post',
+    data: param
+  })
+}
+
+export const workStatus = (param) => {
+  return project.request({
+    url: '/project/workStatus',
+    method: 'post',
+    data: param
+  })
+}
+
+export const commit = (param) => {
+  return project.request({
+    url: '/project/commit',
+    method: 'post',
+    data: param
+  })
+}

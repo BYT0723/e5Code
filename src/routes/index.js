@@ -59,7 +59,7 @@ const routes = [
     }
   },
   {
-    path: '/project/list/:projectName',
+    path: '/project/:projectName/list',
     name: 'projectDetail',
     component: () => import('../views/project/detail.vue'),
     meta: {
@@ -67,9 +67,25 @@ const routes = [
     }
   },
   {
-    path: '/project/edit/:projectName',
+    path: '/project/:projectName/edit',
     name: 'projectEdit',
     component: () => import('../views/project/editProject.vue'),
+    meta: {
+      showCommon: true
+    }
+  },
+  {
+    path: '/project/:projectName/coding',
+    name: 'projectCoding',
+    component: () => import('../views/project/code.vue'),
+    meta: {
+      showCommon: true
+    }
+  },
+  {
+    path: '/project/:projectName/build',
+    name: 'projectCoding',
+    component: () => import('../views/project/buildPanel.vue'),
     meta: {
       showCommon: true
     }

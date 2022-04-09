@@ -3,8 +3,10 @@
     <el-card shadow="hover" class="user">
       <img class="Img" :src="userImg">
       <div class="userinfo" v-show="!isEditInfo">
-          <h2 class="username">{{user.name}}</h2>
-          <p class="account">{{user.account}}</p>
+          
+          <h2>{{user.name}}</h2>
+          <p><i class="el-icon-user-solid"></i> {{user.account}}</p>
+          <p style="font-size: 10px">{{user.bio}}</p>
           <el-button type="primary" plain class="editButton" @click="editUser" style="width:100%">edit</el-button>
       </div>
       <div class="userInfoForm" v-show="isEditInfo">
@@ -14,6 +16,9 @@
           </el-form-item>
           <el-form-item label="Name">
             <el-input v-model="formEditUserInfo.name" placeholder="name"></el-input>
+          </el-form-item>
+          <el-form-item label="Bio">
+            <el-input v-model="formEditUserInfo.bio" placeholder="bio"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="success" @click="saveInfo">保存</el-button>
@@ -31,6 +36,9 @@
               <el-link :underline="false" class="name" @click="projectDetail(item)">{{item.name}}</el-link>
               <p class="owner"><i class="el-icon-user-solid"></i> {{item.owner.account}}</p>
               <p class="desc">{{item.desc}}</p>
+            </div>
+            <div class="projectStatus">
+              {{ item.status }}
             </div>
           </el-card>
           <el-button @click="addProject" icon="el-icon-circle-plus" class="project"></el-button>
@@ -54,8 +62,8 @@ export default {
       labelPosition: 'left',
       formEditUserInfo: {
         account: '',
-        email: '',
         name: '',
+        bio: ''
       }
     }
   },
@@ -65,17 +73,23 @@ export default {
       this.$router.push('/project/add')
     },
     projectDetail(item){
-      this.$router.push('/project/list/'+item.name)
+      this.$router.push({
+        path: '/project/'+item.name+'/list',
+        query: {
+          id: item.id
+        }
+      })
     },
     editUser(){
       this.isEditInfo = true
     },
     saveInfo(){
-      let param = { id: cookie.getCookie('userid'), name: this.formEditUserInfo.name }
+      let param = { id: cookie.getCookie('userid'), name: this.formEditUserInfo.name, bio: this.formEditUserInfo.bio }
       updateUser(param).then(res => {
         if(res.data['code']==null) {
           this.$message.success("修改成功")
           this.user.name = this.formEditUserInfo.name
+          this.user.bio = this.formEditUserInfo.bio
           this.cancel()
         }else{
           this.$message.error(res.data['msg'])
@@ -96,6 +110,7 @@ export default {
         this.user = res.data
         this.formEditUserInfo.account = res.data['account'];
         this.formEditUserInfo.name = res.data['name'];
+        this.formEditUserInfo.bio = res.data['bio'];
       }else{
         this.$message.error(res.data['msg'])
       }
@@ -147,6 +162,12 @@ export default {
   margin-top: 15px;
   margin-right: 2%;
   border-radius: 10px;
+  position: relative;
+}
+.projectStatus{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }
 .name {
   font-size: 25px;

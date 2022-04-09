@@ -21,7 +21,7 @@ class HttpRequest {
     const instance = axios.create({
       baseURL: this.baseUrl
     })
-    instance.defaults.headers.common['Authorization'] = cookie.getCookie('token');
+    instance.defaults.headers.common['Authorization'] = "Bearer "+cookie.getCookie('token');
     param = { ...this.getConfig(), ...param }
     return instance(param)
   }

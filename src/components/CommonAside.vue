@@ -57,25 +57,11 @@
             url: 'Home/Home',
           },
           {
-            path: '/project',
-            label: '项目',
+            path: '/project/list',
+            name: 'project',
+            label: '我的项目',
             icon: 'menu',
-            children: [
-              {
-                path: '/project/list',
-                name: 'project',
-                label: '我的项目',
-                icon: 'menu',
-                url: "Project/Project" 
-              },
-              {
-                path: '/project/build',
-                name: 'build',
-                label: '项目构建',
-                icon: 'menu',
-                url: "Build/Build" 
-              }
-            ]
+            url: "Project/Project"
           },
           {
             path: '/info',
